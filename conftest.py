@@ -1,4 +1,5 @@
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.options import Options
 import pytest
 import allure
 from pathlib import Path
@@ -6,11 +7,14 @@ import logging
 
 log = logging.getLogger(__name__)
 
-
+options = Options()
+options.add_argument("--headless=new")
+options.add_argument("--no-sandbox")     
+options.add_argument("--disable-dev-shm-usage")  
 
 @pytest.fixture(scope='module')
 def chrome_driver():
-    driver = Chrome()
+    driver = Chrome(options=options)
     driver.get("https://open.spotify.com")
     yield driver
     driver.quit()
