@@ -22,4 +22,4 @@ def test_search_bar(home):
     assert home.get_enabled_state(HomePageSelectors.SEARCH_BUTTON)
     assert home.get_displayed_state(HomePageSelectors.SEARCH_INPUT)
     assert home.get_enabled_state(HomePageSelectors.SEARCH_CLEAR_BUTTON)
-    assert home.get_displayed_state(HomePageSelectors.BROWSE_BUTTON)
+    assert home.get_enabled_state(HomePageSelectors.BROWSE_BUTTON)
