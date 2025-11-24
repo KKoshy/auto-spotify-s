@@ -25,6 +25,6 @@ class BasePage:
         return self.find(locator).is_displayed()
     
     def save_screenshot(self):
-        img_path = os.path.join("allure-report", "{}.png".format(uuid4()))
+        img_path = os.path.join("allure-results", "{}.png".format(uuid4()))
         self.driver.save_screenshot(img_path)
         allure.attach.file(source=img_path)
