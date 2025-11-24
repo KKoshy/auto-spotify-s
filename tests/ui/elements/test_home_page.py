@@ -26,15 +26,15 @@ class TestNavigationBar:
 
     def test_premium_button(self, home):
         log.info("Checking for Premium button")
-        assert home.get_enabled_state(HomePageSelectors.PREMIUM_BUTTON)
+        assert home.get_displayed_state(HomePageSelectors.PREMIUM_BUTTON)
 
     def test_support_button(self, home):
         log.info("Checking for Support button")
-        assert home.get_enabled_state(HomePageSelectors.SUPPORT_BUTTON)
+        assert home.get_displayed_state(HomePageSelectors.SUPPORT_BUTTON)
 
     def test_download_button(self, home):
         log.info("Checking for Download button")
-        assert home.get_enabled_state(HomePageSelectors.DOWNLOAD_BUTTON)
+        assert home.get_displayed_state(HomePageSelectors.DOWNLOAD_BUTTON)
 
     def test_install_app_button(self, home):
         log.info("Checking for Install App button")
