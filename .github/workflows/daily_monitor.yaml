@@ -2,22 +2,29 @@ name: Spotify daily monitor
 
 on: 
   workflow_dispatch
-  
+
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
-
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
-
-      - name: Install Chromedriver
-        uses: nanasess/setup-chromedriver@v2
+        uses: actions/checkout@v4
       
       - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Execute test cases
-        run: pytest
+        run: pytest --alluredir=allure-results
+
+      - name: Generate Allure Report
+        run: |
+          npm install -g allure-commandline --save-dev
+          allure generate allure-results --clean -o allure-report
+
+      - name: Deploy Allure Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-report
+          publish_branch: gh-pages
