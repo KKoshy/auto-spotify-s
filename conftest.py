@@ -11,8 +11,7 @@ log = logging.getLogger(__name__)
 
 @pytest.fixture(scope='module')
 def chrome_driver():
-    options = Options()
-    options.add_argument("--window-size=1920,1080")  
+    options = Options() 
     driver = Chrome(options=options)
     driver.get("https://open.spotify.com")
     yield driver
