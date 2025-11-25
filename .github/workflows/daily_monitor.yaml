@@ -14,8 +14,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
+      - name: Run tests with xvfb
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" pytest -v
 
       - name: Execute test cases
         run: pytest --alluredir=allure-results
