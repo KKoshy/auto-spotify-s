@@ -1,19 +1,18 @@
 from selenium.webdriver import Chrome
-from selenium.webdriver.chrome.options import Options
 import pytest
 import allure
 from pathlib import Path
 import logging
+from selenium.webdriver.chrome.options import Options
 
 log = logging.getLogger(__name__)
 
-options = Options()
-options.add_argument("--headless=new")
-options.add_argument("--no-sandbox")     
-options.add_argument("--disable-dev-shm-usage")  
+
 
 @pytest.fixture(scope='module')
 def chrome_driver():
+    options = Options()
+    options.add_argument("--window-size=1920,1080")  
     driver = Chrome(options=options)
     driver.get("https://open.spotify.com")
     yield driver
@@ -24,7 +23,7 @@ def pytest_collection_modifyitems(items):
     """
     Modifying the test cases before it starts
     """
-    repo = "auto-spotify-s"
+    repo = "auto-spot-sel"
     for item in items:
         item.add_marker(allure.story(repo))
         _file = Path(item.nodeid.split("::")[0])
