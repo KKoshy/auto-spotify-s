@@ -12,6 +12,7 @@ def chrome(chrome_driver):
     yield chrome_driver
 
 class TestLogin:
+    @pytest.mark.dependency(name='login')
     def test_login(self, chrome):
         log.info("Validating login")
         home = HomePage(chrome)
@@ -22,6 +23,7 @@ class TestLogin:
         assert home.wait_for_url().get_enabled_state((by, xpath.format(user_name='A'))), "Login failed"
         log.info("Login succeeded")
 
+    @pytest.mark.dependency(depends=['login'])
     def test_user_nav_bar(self, chrome):
         log.info("Validating Navigation bar elements post Login")
         home = HomePage(chrome)
@@ -31,6 +33,7 @@ class TestLogin:
         assert home.get_enabled_state(NavigationBarSelectors.WHATS_NEW_BUTTON)
         assert home.get_enabled_state(NavigationBarSelectors.FRIEND_ACTIVITY_BUTTON)
 
+    @pytest.mark.dependency(depends=['login'])
     def test_logout(self, chrome):
         log.info("Validating logout")
         home = HomePage(chrome)
