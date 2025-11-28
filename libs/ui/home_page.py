@@ -1,9 +1,20 @@
+
 from libs.ui.base_page import BasePage
+from libs.ui.navigation_page import NavigationBar
+from selenium.webdriver.support import expected_conditions as EC
 
 class HomePage(BasePage):
     def __init__(self, driver):
-        self.url = "https://open.spotify.com"
+        self.url = r"^https://open.spotify.com"
         self.driver = driver
+        self.nav_bar = NavigationBar(driver)
         super().__init__(driver)
 
-    
+    def wait_for_url(self):
+        """
+        Wait for the page URL
+
+        :return: self for method chaining
+        """
+        self.wait.until(EC.url_matches(self.url))
+        return self
