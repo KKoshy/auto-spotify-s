@@ -1,4 +1,5 @@
 import os
+import time
 import allure
 from uuid import uuid4
 from selenium.webdriver.support.ui import WebDriverWait
