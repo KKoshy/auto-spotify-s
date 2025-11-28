@@ -1,7 +1,7 @@
 import logging
 import pytest
 from libs.ui.home_page import HomePage
-from libs.ui.locators import HomePageSelectors
+from libs.ui.locators import HomePageSelectors, NavigationBarSelectors
 
 
 log = logging.getLogger(__name__)
@@ -15,38 +15,38 @@ def home(chrome_driver):
 class TestNavigationBar:
     def test_home_button(self, home):
         log.info("Checking for Home button state")
-        assert home.get_displayed_state(HomePageSelectors.HOME_BUTTON)
+        assert home.get_displayed_state(NavigationBarSelectors.HOME_BUTTON)
 
     def test_search_bar(self, home):
         log.info("Checking for search bar elements")
-        assert home.get_enabled_state(HomePageSelectors.SEARCH_BUTTON)
-        assert home.get_displayed_state(HomePageSelectors.SEARCH_INPUT)
-        assert home.get_enabled_state(HomePageSelectors.SEARCH_CLEAR_BUTTON)
-        assert home.get_enabled_state(HomePageSelectors.BROWSE_BUTTON)
+        assert home.get_enabled_state(NavigationBarSelectors.SEARCH_BUTTON)
+        assert home.get_displayed_state(NavigationBarSelectors.SEARCH_INPUT)
+        assert home.get_enabled_state(NavigationBarSelectors.SEARCH_CLEAR_BUTTON)
+        assert home.get_enabled_state(NavigationBarSelectors.BROWSE_BUTTON)
 
     def test_premium_button(self, home):
         log.info("Checking for Premium button")
-        assert home.get_enabled_state(HomePageSelectors.PREMIUM_BUTTON)
+        assert home.get_enabled_state(NavigationBarSelectors.PREMIUM_BUTTON)
 
     def test_support_button(self, home):
         log.info("Checking for Support button")
-        assert home.get_enabled_state(HomePageSelectors.SUPPORT_BUTTON)
+        assert home.get_enabled_state(NavigationBarSelectors.SUPPORT_BUTTON)
 
     def test_download_button(self, home):
         log.info("Checking for Download button")
-        assert home.get_enabled_state(HomePageSelectors.DOWNLOAD_BUTTON)
+        assert home.get_enabled_state(NavigationBarSelectors.DOWNLOAD_BUTTON)
 
     def test_install_app_button(self, home):
         log.info("Checking for Install App button")
-        assert home.get_enabled_state(HomePageSelectors.INSTALL_APP_BUTTON)
+        assert home.get_enabled_state(NavigationBarSelectors.INSTALL_APP_BUTTON)
 
     def test_sign_up_button(self, home):
         log.info("Checking for Sign up button")
-        assert home.get_enabled_state(HomePageSelectors.SIGN_UP_BUTTON)
+        assert home.get_enabled_state(NavigationBarSelectors.SIGN_UP_BUTTON)
 
     def test_login_button(self, home):
         log.info("Checking for Login button")
-        assert home.get_enabled_state(HomePageSelectors.LOGIN_BUTTON)
+        assert home.get_enabled_state(NavigationBarSelectors.LOGIN_BUTTON)
 
 class TestLeftSideBar:
     def test_library_header(self, home):
