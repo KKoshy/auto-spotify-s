@@ -9,19 +9,19 @@ class BasePage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
 
-    def find(self, locator):
+    def find(self, locator: str):
         return self.wait.until(EC.presence_of_element_located(locator))
 
-    def click(self, locator):
+    def click(self, locator: str):
         self.find(locator).click()
 
-    def type(self, locator, text):
+    def type(self, locator: str, text: str):
         self.find(locator).send_keys(text)
 
-    def get_enabled_state(self, locator):
+    def get_enabled_state(self, locator: str):
         return self.find(locator).is_enabled()
 
-    def get_displayed_state(self, locator):
+    def get_displayed_state(self, locator: str):
         return self.find(locator).is_displayed()
     
     def save_screenshot(self):
