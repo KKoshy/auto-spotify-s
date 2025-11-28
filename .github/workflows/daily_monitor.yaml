@@ -15,6 +15,9 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Execute test cases
+        env:
+            SPOTIFY_USER: ${{ secrets.SPOTIFY_USER }}
+            SPOTIFY_PASSWORD: ${{ secrets.SPOTIFY_USER_KEY }}
         run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" pytest --alluredir=allure-results
         
       - name: Generate Allure Report
