@@ -16,7 +16,9 @@ class BasePage:
         self.find(locator).click()
 
     def type(self, locator: str, text: str):
-        self.find(locator).send_keys(text)
+        for ch in text:
+            self.find(locator).send_keys(ch)
+            time.sleep(0.08)
 
     def get_enabled_state(self, locator: str):
         return self.find(locator).is_enabled()
