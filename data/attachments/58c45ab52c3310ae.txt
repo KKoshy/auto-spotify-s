@@ -1,0 +1,2 @@
+2025-11-28 12:35:27 [    INFO] Validating login
+2025-11-28 12:35:29 [    INFO] Logging in as asdofnsdoin@gmail.com

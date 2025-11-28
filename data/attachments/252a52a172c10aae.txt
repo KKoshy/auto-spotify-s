@@ -1,2 +1,0 @@
-2025-11-28 12:20:09 [    INFO] Validating logout
-2025-11-28 12:20:09 [    INFO] Logging out
