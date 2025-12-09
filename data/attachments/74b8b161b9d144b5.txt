@@ -1,0 +1,2 @@
+2025-12-09 12:34:52 [ WARNING] Error sending stats to Plausible: error sending request for url (https://plausible.io/api/event)
+2025-12-09 12:35:33 [    INFO] Checking for Home button state
