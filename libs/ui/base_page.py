@@ -4,28 +4,46 @@ import allure
 from uuid import uuid4
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import TimeoutException
 
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
+        self.base_url = "https://open.spotify.com"
         self.wait = WebDriverWait(driver, 10)
 
-    def find(self, locator: str):
-        return self.wait.until(EC.presence_of_element_located(locator))
+    def find(self, locator: str, timeout_ignore: bool=False):
+        try:
+            return self.wait.until(EC.presence_of_element_located(locator))
+        except TimeoutException as e:
+            if timeout_ignore:
+                return False
+            raise e
+
 
     def click(self, locator: str):
         self.find(locator).click()
 
+    def get_text(self, locator: str):
+        return self.find(locator).text
+
     def type(self, locator: str, text: str):
+        element = self.find(locator)
+        element.send_keys(Keys.CONTROL, "a")
+        element.send_keys(Keys.DELETE)
         for ch in text:
-            self.find(locator).send_keys(ch)
+            element.send_keys(ch)
             time.sleep(0.08)
 
     def get_enabled_state(self, locator: str):
         return self.find(locator).is_enabled()
 
     def get_displayed_state(self, locator: str):
-        return self.find(locator).is_displayed()
+        try:
+            return self.find(locator).is_displayed()
+        except TimeoutException:
+            return False
     
     def save_screenshot(self):
         img_path = os.path.join("allure-results", "{}.png".format(uuid4()))
