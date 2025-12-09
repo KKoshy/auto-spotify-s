@@ -10,8 +10,6 @@ from tenacity import (
     wait_fixed,
 )
 
-
-
 log = logging.getLogger(__name__)
 
 class LoginPage(BasePage):
