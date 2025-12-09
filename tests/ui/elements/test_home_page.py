@@ -1,7 +1,7 @@
 import logging
 import pytest
 from libs.ui.home_page import HomePage
-from libs.ui.locators import HomePageSelectors, NavigationBarSelectors
+from libs.ui.locators import HomePageSelectors, NavigationBarSelectors, LeftSideBarSelectors
 
 
 log = logging.getLogger(__name__)
@@ -51,13 +51,13 @@ class TestNavigationBar:
 class TestLeftSideBar:
     def test_library_header(self, home):
         log.info("Checking for Your library header")
-        assert home.get_displayed_state(HomePageSelectors.YOUR_LIBRARY_HEADER)
+        assert home.get_displayed_state(LeftSideBarSelectors.YOUR_LIBRARY_HEADER)
 
     def test_create_playlist(self, home):
         log.info("Checking for Create Playlist button")
-        assert home.get_enabled_state(HomePageSelectors.CREATE_PL_FL)
-        home.click(HomePageSelectors.CREATE_PL_FL)
-        assert home.get_enabled_state(HomePageSelectors.CREATE_PLAYLIST_OPTION)
+        assert home.get_enabled_state(LeftSideBarSelectors.CREATE_PL_FL)
+        home.click(LeftSideBarSelectors.CREATE_PL_FL)
+        assert home.get_enabled_state(LeftSideBarSelectors.CREATE_PLAYLIST_OPTION)
 
 class TestLegalLinks:
     def test_legal_link(self, home):
