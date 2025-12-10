@@ -1,0 +1,1 @@
+2025-12-10 08:06:19 [    INFO] skip test_logout because it depends on login
