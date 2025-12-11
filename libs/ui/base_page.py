@@ -11,7 +11,7 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
         self.base_url = "https://open.spotify.com"
-        self.wait = WebDriverWait(driver, 10)
+        self.wait = WebDriverWait(driver, 30)
 
     def find(self, locator: str, timeout_ignore: bool=False):
         try:
@@ -37,7 +37,10 @@ class BasePage:
             time.sleep(0.08)
 
     def get_enabled_state(self, locator: str):
-        return self.find(locator).is_enabled()
+        try: 
+            return self.find(locator).is_enabled()
+        except TimeoutException:
+            return False
 
     def get_displayed_state(self, locator: str):
         try:
