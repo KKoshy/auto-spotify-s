@@ -10,6 +10,7 @@ class PlaylistDetailsPage(BasePage):
     def __init__(self, driver, playlist_id):
         self.url = f"https://open.spotify.com/playlist/{playlist_id}"
         self.driver = driver
+        self.playlist_id = playlist_id
         super().__init__(driver)
 
     def update_details(self, playlist_data: PlaylistData) -> "PlaylistDetailsPage":
@@ -20,7 +21,7 @@ class PlaylistDetailsPage(BasePage):
         :return: current instance of the PlaylistDetailsPage
         """
         log.info("Updating details of playlist")
-        self.click(PlaylistDetailsPageSelectors.MORE_BUTTON)
+        self.click(PlaylistDetailsPageSelectors.PLAYLIST_MORE_BUTTON)
         self.click(PlaylistDetailsPageSelectors.EDIT_DETAILS)
         assert self.get_displayed_state(PlaylistDetailsPageSelectors.PL_DETAILS_MODAL)
         self.type(PlaylistDetailsPageSelectors.PL_NAME_INPUT, playlist_data.name)
@@ -31,8 +32,62 @@ class PlaylistDetailsPage(BasePage):
         self.save_screenshot()
         return self
     
-    def search_song(self, song: str):
-        self.type(PlaylistDetailsPageSelectors.SEARCH_BAR, song)
+    def remove_track_from_playlist(self, track: str, artist: str, album: str) -> "PlaylistDetailsPage":
+        """
+        Remove track from the playlist
+        
+        :param track: track name
+        :param artist: artist name
+        :param album: album name
+        :return: current instance of the PlaylistDetailsPage
+        """
+        log.info(f"Removing track {track} by {artist} from {album} from the playlist")
+        by, xpath = PlaylistDetailsPageSelectors.TRACK_MORE_BUTTON
+        self.click((by, xpath.format(track=track, artist=artist, album=album)))
+        self.click(PlaylistDetailsPageSelectors.REMOVE_TRACK)
+        self.wait.until(EC.invisibility_of_element_located((by, xpath.format(track=track, artist=artist, album=album))))
+        return self
+    
+    def add_track_to_playlist(self, track: str, artist: str, album: str) -> "PlaylistDetailsPage":
+        """
+        Add track to the playlist
+        
+        :param track: track name
+        :param artist: artist name
+        :param album: album name
+        :return: current instance of the PlaylistDetailsPage
+        """
+        log.info(f"Adding track {track} by {artist} from {album} to the playlist")
+        self.search_track(track=track)
+        self.should_have_track_in_search_result(track=track, artist=artist, album=album)
+        by, xpath = PlaylistDetailsPageSelectors.ADD_BUTTON_TEMPLATE
+        self.click((by, xpath.format(track=track, artist=artist, album=album)))
+        return self
+    
+    def search_track(self, track: str) -> "PlaylistDetailsPage":
+        """
+        Search tracks in the playlist details page
+        
+        :param track: track name
+        :return: current instance of the PlaylistDetailsPage
+        """
+        log.info(f"Searching for track {track}")
+        self.type(PlaylistDetailsPageSelectors.SEARCH_BAR, track)
+        return self
+    
+    def delete_playlist(self, playlist: str) -> "PlaylistDetailsPage":
+        """
+        Deletes the playlist
+        
+        :param playlist: playlist name
+        :return: current instance of the PlaylistDetailsPage
+        """
+        log.info("Deleting the playlist")
+        self.click(PlaylistDetailsPageSelectors.PLAYLIST_MORE_BUTTON)
+        self.click(PlaylistDetailsPageSelectors.DELETE_PLAYLIST)
+        self.should_have_delete_dialog(playlist=playlist)
+        self.click(PlaylistDetailsPageSelectors.DELETE_BUTTON)
+        self.wait.until(EC.invisibility_of_element_located(PlaylistDetailsPageSelectors.DELETE_DIALOG))
         return self
 
     def should_have_playlist_name_desc(self, playlist_data: PlaylistData) -> "PlaylistDetailsPage":
@@ -47,4 +102,59 @@ class PlaylistDetailsPage(BasePage):
         by, xpath = PlaylistDetailsPageSelectors.PL_DESCRIPTION
         assert self.get_displayed_state((by, xpath.format(description=playlist_data.description)))
         return self
-
+    
+    def should_have_track_in_search_result(self, track: str, artist: str, album: str) -> "PlaylistDetailsPage":
+        """
+        Validating track is listed in the search result
+        
+        :param track: track name
+        :param artist: artist name
+        :param album: album name
+        :return: current instance of the PlaylistDetailsPage
+        """
+        log.info("Validating presence of the track in search result")
+        by, xpath = PlaylistDetailsPageSelectors.SEARCH_TRACKLIST_ROW_TEMPLATE
+        assert self.get_enabled_state((by, xpath.format(track=track, artist=artist, album=album)))
+        return self
+    
+    def should_have_track_in_playlist(self, track: str, artist: str, album: str) -> "PlaylistDetailsPage":
+        """
+        Validating track is listed in the playlist
+        
+        :param track: track name
+        :param artist: artist name
+        :param album: album name
+        :return: current instance of the PlaylistDetailsPage
+        """
+        log.info("Validating presence of the track in the playlist")
+        by, xpath = PlaylistDetailsPageSelectors.PLAYLIST_TRACK_ROW_TEMPLATE
+        assert self.get_enabled_state((by, xpath.format(track=track, artist=artist, album=album)))
+        return self
+    
+    def should_not_have_track_in_playlist(self, track: str, artist: str, album: str) -> "PlaylistDetailsPage":
+        """
+        Validating track is not listed in the playlist
+        
+        :param track: track name
+        :param artist: artist name
+        :param album: album name
+        :return: current instance of the PlaylistDetailsPage
+        """
+        log.info("Validating absence of the track in the playlist")
+        by, xpath = PlaylistDetailsPageSelectors.PLAYLIST_TRACK_ROW_TEMPLATE
+        assert not self.get_enabled_state((by, xpath.format(track=track, artist=artist, album=album)))
+        return self
+    
+    def should_have_delete_dialog(self, playlist: str) -> "PlaylistDetailsPage":
+        """
+        Validating the presence of delete dialog
+        
+        :param playlist: playlist name
+        :return: current instance of the PlaylistDetailsPage
+        """
+        log.info("Validating the presence of delete dialog")
+        by, xpath = PlaylistDetailsPageSelectors.DELETE_DIALOG
+        assert self.get_displayed_state((by, xpath.format(playlist=playlist)))
+        by, xpath = PlaylistDetailsPageSelectors.DELETE_DIALOG_MESSAGE
+        assert self.get_displayed_state((by, xpath.format(playlist=playlist)))
+        return self
