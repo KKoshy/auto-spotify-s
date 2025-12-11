@@ -1,0 +1,1 @@
+2025-12-11 03:32:03 [    INFO] Checking for About Ads link
