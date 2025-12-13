@@ -1,0 +1,1 @@
+2025-12-13 14:58:09 [    INFO] Checking for Premium button
