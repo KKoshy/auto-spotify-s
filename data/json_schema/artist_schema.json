@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "required": [
+    "external_urls",
+    "followers",
+    "genres",
+    "href",
+    "id",
+    "images",
+    "name",
+    "popularity",
+    "type",
+    "uri"
+  ],
+  "properties": {
+    "external_urls": {
+      "type": "object",
+      "required": ["spotify"],
+      "properties": {
+        "spotify": { "type": "string" }
+      }
+    },
+    "followers": {
+      "type": "object",
+      "required": ["href", "total"],
+      "properties": {
+        "href": { "type": ["string", "null"] },
+        "total": { 
+            "type": "number",
+            "minimum": 0
+        }
+      }
+    },
+    "genres": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "href": { "type": "string" },
+    "id": { "type": "string" },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["url", "height", "width"],
+        "properties": {
+          "url": { 
+            "type": "string",
+            "pattern": "^https://" 
+        },
+          "height": { "type": "number" },
+          "width": { "type": "number" }
+        }
+      }
+    },
+    "name": { "type": "string" },
+    "popularity": { 
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+    },
+    "type": { "type": "string" },
+    "uri": { "type": "string" }
+  }
+}

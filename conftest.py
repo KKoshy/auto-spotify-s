@@ -1,9 +1,11 @@
 from selenium.webdriver import Chrome
 import pytest
+import os
 import allure
 from pathlib import Path
 import logging
 from selenium.webdriver.chrome.options import Options
+from libs.api.artists_api import ArtistsAPI
 
 log = logging.getLogger(__name__)
 
@@ -26,12 +28,16 @@ def chrome_driver():
     yield driver
     driver.quit()
 
+@pytest.fixture(scope="module")
+def artists():
+    return ArtistsAPI(client_id=os.getenv('SPOTIFY_CLIENT_ID'), client_secret=os.getenv('SPOTIFY_CLIENT_SECRET'))
+
 @pytest.hookimpl(tryfirst=True)
 def pytest_collection_modifyitems(items):
     """
     Modifying the test cases before it starts
     """
-    repo = "auto-spot-sel"
+    repo = "auto-spot-s"
     for item in items:
         item.add_marker(allure.story(repo))
         _file = Path(item.nodeid.split("::")[0])
