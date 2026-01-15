@@ -38,7 +38,7 @@ class LeftSideBarPage(BasePage):
             assert self.get_enabled_state(LeftSideBarSelectors.COLLAPSE_LIBRARY)
         return self
     
-    def search_playlist(self, playlist: str):
+    def search_playlist(self, playlist: str) -> "LeftSideBarPage":
         """
         Search for the playlist in library
         
@@ -51,7 +51,7 @@ class LeftSideBarPage(BasePage):
         self.type(LeftSideBarSelectors.SEARCH_BAR, playlist)
         return self
     
-    def should_have_playlist(self, playlist: str):
+    def should_have_playlist(self, playlist: str) -> "LeftSideBarPage":
         """
         Validating the presence of playlist in the library
         
@@ -64,7 +64,7 @@ class LeftSideBarPage(BasePage):
         assert self.get_displayed_state((by, xpath.format(playlist=playlist)))
         return self
     
-    def should_not_have_playlist(self, playlist: str):
+    def should_not_have_playlist(self, playlist: str) -> "LeftSideBarPage":
         """
         Validating the absence of playlist in the library
         
