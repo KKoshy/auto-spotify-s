@@ -13,7 +13,7 @@ class BasePage:
         self.base_url = "https://open.spotify.com"
         self.wait = WebDriverWait(driver, 30)
 
-    def find(self, locator: str, timeout_ignore: bool=False):
+    def find(self, locator: tuple, timeout_ignore: bool=False):
         try:
             return self.wait.until(EC.presence_of_element_located(locator))
         except TimeoutException as e:
@@ -22,13 +22,13 @@ class BasePage:
             raise e
 
 
-    def click(self, locator: str):
+    def click(self, locator: tuple):
         self.find(locator).click()
 
-    def get_text(self, locator: str):
+    def get_text(self, locator: tuple):
         return self.find(locator).text
 
-    def type(self, locator: str, text: str):
+    def type(self, locator: tuple, text: str):
         element = self.find(locator)
         element.send_keys(Keys.CONTROL, "a")
         element.send_keys(Keys.DELETE)
@@ -36,13 +36,13 @@ class BasePage:
             element.send_keys(ch)
             time.sleep(0.08)
 
-    def get_enabled_state(self, locator: str):
+    def get_enabled_state(self, locator: tuple):
         try: 
             return self.find(locator).is_enabled()
         except TimeoutException:
             return False
 
-    def get_displayed_state(self, locator: str):
+    def get_displayed_state(self, locator: tuple):
         try:
             return self.find(locator).is_displayed()
         except TimeoutException:
