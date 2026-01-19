@@ -52,6 +52,7 @@ class TestNegativeLogin:
         home.click(NavigationBarSelectors.LOGIN_BUTTON)
         login = LoginPage(chrome).wait_for_url()
         login.click(LoginPageSelectors.CONTINUE_LOGIN_BUTTON)
+        login.save_screenshot()
         login.should_have_username_error()
 
     @pytest.mark.dependency(name='no_account', depends=['no_user'])
