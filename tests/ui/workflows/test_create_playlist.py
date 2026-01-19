@@ -19,6 +19,7 @@ def chrome(chrome_driver):
     login.wait_for_url().login(username=os.getenv('SPOTIFY_USER'), password=os.getenv('SPOTIFY_PASSWORD'))
     yield chrome_driver, home
 
+@pytest.mark.positive
 class TestCreatePlaylist:
     @pytest.mark.dependency(name='create')
     def test_create_playlist(self, chrome):
