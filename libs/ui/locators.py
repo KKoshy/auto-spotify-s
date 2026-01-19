@@ -6,6 +6,9 @@ class LoginPageSelectors:
     LOGIN_WITH_PASSWORD = (By.XPATH, "//button[contains(., 'Log in with a password')]")
     PASSWORD = (By.XPATH, "//input[@data-testid='login-password']")
     LOGIN_ALERT = (By.XPATH, "//div[@data-encore-id='banner'][contains(., 'Oops! Something went wrong, please try again or check out our help area')]")
+    USER_ERROR = (By.XPATH, '//div[@data-testid="username-error"]/descendant::span[normalize-space()="{msg}"]')
+    NO_PASSWORD_ERROR = (By.XPATH, "//div[@data-testid='password-error']/span[normalize-space()='Please enter your password.']")
+    INCORRECT_CREDS = (By.XPATH, "//div[@role='alert']/span[normalize-space()='Incorrect username or password.']")
 
 class NavigationBarSelectors:
     HOME_BUTTON = (By.XPATH, "//button[@data-testid='home-button']")
