@@ -1,6 +1,9 @@
 from requests import Response
 from typing import Optional
-from libs.api.base_session import Session
+from libs.api.core.base_session import Session
+from libs.api.log.log_handler import LogHandler
+
+log_handler = LogHandler.logger
 
 
 class ArtistsAPI(Session):
@@ -8,6 +11,7 @@ class ArtistsAPI(Session):
         super().__init__(client_id=client_id, client_secret=client_secret)
         self.version = "v1"
 
+    @log_handler
     def get_artist(self, artist_id: str, ignore_handle_response: bool = False) -> Response:
         """
         Get Spotify catalog information for a single artist identified by their unique Spotify ID.
@@ -18,7 +22,8 @@ class ArtistsAPI(Session):
         :reference: https://developer.spotify.com/documentation/web-api/reference/get-an-artist
         """
         return self.get(url=self._get_path(f"artists/{artist_id}"), ignore_handle_response=ignore_handle_response)
-    
+
+    @log_handler
     def get_artists(self, artist_ids: list[str], ignore_handle_response: bool = False) -> Response:
         """
         Get Spotify catalog information for several artists based on their Spotify IDs.        
@@ -31,6 +36,7 @@ class ArtistsAPI(Session):
         qparams = {"ids": ",".join(artist_ids)}
         return self.get(url=self._get_path("artists"), params=qparams, ignore_handle_response=ignore_handle_response)
     
+    @log_handler
     def get_artist_albums(self, 
                           artist_id: str, 
                           include_groups: Optional[list[str]] = None, 
@@ -67,7 +73,8 @@ class ArtistsAPI(Session):
         if offset:
             qparams['offset'] = offset
         return self.get(url=self._get_path(f"artists/{artist_id}/albums"), params=qparams, ignore_handle_response=ignore_handle_response)
-    
+
+    @log_handler
     def get_artist_top_tracks(self, artist_id: str, market: Optional[str] = None, ignore_handle_response: bool = False) -> Response:
         """
         Get Spotify catalog information about an artist's top tracks by country.
@@ -82,7 +89,8 @@ class ArtistsAPI(Session):
         if market:
             qparams["market"] = market
         return self.get(url=self._get_path(f"artists/{artist_id}/top-tracks"), params=qparams, ignore_handle_response=ignore_handle_response)
-    
+
+    @log_handler
     def get_artist_related_artists(self, artist_id: str, ignore_handle_response: bool = False):
         """
         :NOTE: Deprecated
