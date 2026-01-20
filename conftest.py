@@ -5,7 +5,7 @@ import allure
 from pathlib import Path
 import logging
 from selenium.webdriver.chrome.options import Options
-from libs.api.artists_api import ArtistsAPI
+from libs.api.artists.artists_api import ArtistsAPI
 
 log = logging.getLogger(__name__)
 
