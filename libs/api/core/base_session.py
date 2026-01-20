@@ -29,7 +29,7 @@ class Session:
                   "client_secret": self.client_secret}
         self._set_headers()
         response = self.post(url=token_url, params=params)
-        self.token = response.json().get("access_token", None)
+        self.token = response.json().get("access_token")
         self._set_headers()
 
 
@@ -37,5 +37,3 @@ class Session:
         self.cu_session.headers["Content-Type"] = "application/x-www-form-urlencoded"
         if self.token:
             self.cu_session.headers["Authorization"] = f"Bearer {self.token}"
-        
-
