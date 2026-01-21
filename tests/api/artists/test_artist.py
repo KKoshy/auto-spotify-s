@@ -2,7 +2,6 @@ import os
 import json
 import logging
 import pytest
-from requests import Response
 from jsonschema import validate
 from libs.api.artists.song_constants import ArtistAPIConstants
 
@@ -46,34 +45,18 @@ class TestArtistAPI:
 
 @pytest.mark.negative
 class TestNegativeArtistAPI:
-
-    def test_missing_artist_id(self, artists):
-        log.info("Verifying Artist API with absence of artist_id path parameter")
-        artist: Response = artists.get_artist(artist_id="", 
+    @pytest.mark.parametrize("artist_id,status_code,token,message",
+                             [("", 400, None, 'Missing required field: ids'),
+                              (None, 400, None, 'Invalid base62 id'),
+                              (ArtistAPIConstants.artist_id[:-3] + 'abc', 404, None, 'Resource not found'),
+                              (ArtistAPIConstants.artist_id, 401, "asdoinsadnfasoidnsione", 'Invalid access token'),],
+                              ids=["missing_artist_id", "invalid_id", "incorrect_id", "invalid_token"])
+    def test_negative_case(self, artists, artist_id, token, status_code,message):
+        log.info("Verifying negative case of Artist API")
+        if token:
+            artists.token = token
+            artists._set_headers()
+        artist = artists.get_artist(artist_id=artist_id,
                                     ignore_handle_response=True)
-        assert artist.status_code == 400
-        assert artist.json().get('error').get('message') == 'Missing required field: ids'
-    
-    def test_invalid_artist_id(self, artists):
-        log.info("Verifying Artist API with invalid artist_id: None")
-        artist = artists.get_artist(artist_id=None, 
-                                    ignore_handle_response=True)
-        assert artist.status_code == 400
-        assert artist.json().get('error').get('message') == 'Invalid base62 id'
-
-    def test_incorrect_artist_id(self, artists):
-        incorrect_id = ArtistAPIConstants.artist_id[:-3] + 'abc'
-        log.info("Verifying Artist API with incorrect artist_id")
-        artist = artists.get_artist(artist_id=incorrect_id, 
-                                    ignore_handle_response=True)
-        assert artist.status_code == 404
-        assert artist.json().get('error').get('message')  == 'Resource not found'
-
-    def test_invalid_token(self, artists):
-        log.info("Verifying Artist API with invalid access token")
-        artists.token = "abcdefghtijks"
-        artists._set_headers()
-        artist = artists.get_artist(artist_id=ArtistAPIConstants.artist_id,
-                                    ignore_handle_response=True)
-        assert artist.status_code == 401
-        assert artist.json().get('error').get('message') == 'Invalid access token'
+        assert artist.status_code == status_code
+        assert artist.json().get('error').get('message') == message
