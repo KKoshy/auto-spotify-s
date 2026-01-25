@@ -1,12 +1,16 @@
+"""
+Library for Artists API
+"""
+
 from requests import Response
 from typing import Optional
-from libs.api.core.base_session import Session
+from libs.api.core.app_session import AppSession
 from libs.api.log.log_handler import LogHandler
 
 log_handler = LogHandler.logger
 
 
-class ArtistsAPI(Session):
+class ArtistsAPI(AppSession):
     def __init__(self, client_id: str, client_secret: str):
         super().__init__(client_id=client_id, client_secret=client_secret)
         self.version = "v1"

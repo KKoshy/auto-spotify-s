@@ -11,7 +11,7 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
         self.base_url = "https://open.spotify.com"
-        self.wait = WebDriverWait(driver, 30)
+        self.wait = WebDriverWait(driver, 35)
 
     def find(self, locator: tuple, condition: object = EC.presence_of_element_located, timeout_ignore: bool=False):
         try:
@@ -20,7 +20,6 @@ class BasePage:
             if timeout_ignore:
                 return False
             raise e
-
 
     def click(self, locator: tuple):
         self.find(locator, condition=EC.element_to_be_clickable).click()

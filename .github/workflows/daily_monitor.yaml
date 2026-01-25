@@ -20,6 +20,7 @@ jobs:
             SPOTIFY_PASSWORD: ${{ secrets.SPOTIFY_USER_KEY }}
             SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
             SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+            SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
         run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" pytest --alluredir=allure-results
         continue-on-error: true
         

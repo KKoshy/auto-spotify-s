@@ -6,9 +6,10 @@ from pathlib import Path
 import logging
 from selenium.webdriver.chrome.options import Options
 from libs.api.artists.artists_api import ArtistsAPI
+from libs.api.playlists.playlists_api import PlaylistsAPI
+from libs.api.users.users_api import UsersAPI
 
 log = logging.getLogger(__name__)
-
 
 
 @pytest.fixture(scope='module')
@@ -30,7 +31,20 @@ def chrome_driver():
 
 @pytest.fixture(scope="module")
 def artists():
-    return ArtistsAPI(client_id=os.getenv('SPOTIFY_CLIENT_ID'), client_secret=os.getenv('SPOTIFY_CLIENT_SECRET'))
+    return ArtistsAPI(client_id=os.getenv('SPOTIFY_CLIENT_ID'), 
+                      client_secret=os.getenv('SPOTIFY_CLIENT_SECRET'))
+
+@pytest.fixture(scope="module")
+def playlists():
+    return PlaylistsAPI(client_id=os.getenv('SPOTIFY_CLIENT_ID'), 
+                        client_secret=os.getenv('SPOTIFY_CLIENT_SECRET'), 
+                        refresh_token=os.getenv('SPOTIFY_REFRESH_TOKEN'))
+
+@pytest.fixture(scope="module")
+def users():
+    return UsersAPI(client_id=os.getenv('SPOTIFY_CLIENT_ID'), 
+                    client_secret=os.getenv('SPOTIFY_CLIENT_SECRET'), 
+                    refresh_token=os.getenv('SPOTIFY_REFRESH_TOKEN'))
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_collection_modifyitems(items):
@@ -46,4 +60,3 @@ def pytest_collection_modifyitems(items):
         item.add_marker(allure.suite(suite))
         sub_suite = "".join(_file.parent.parts[2:])
         item.add_marker(allure.sub_suite(sub_suite))
-
