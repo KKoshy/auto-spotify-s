@@ -1,0 +1,1 @@
+2026-01-28 18:30:41 [    INFO] Verifying content type
