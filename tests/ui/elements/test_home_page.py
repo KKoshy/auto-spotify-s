@@ -14,7 +14,7 @@ def home(chrome_driver):
 
 class TestNavigationBar:
     def test_home_button(self, home):
-        log.info("Checking for Home button state")
+        log.info("Checking for Home button state.")
         assert home.get_displayed_state(NavigationBarSelectors.HOME_BUTTON)
 
     def test_search_bar(self, home):
