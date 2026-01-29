@@ -16,16 +16,22 @@ class ArtistsAPI(AppSession):
         self.version = "v1"
 
     @log_handler
-    def get_artist(self, artist_id: str, ignore_handle_response: bool = False) -> Response:
+    def get_artist(self, artist_id: str, ignore_handle_response: bool = False, status_code: Optional[int] = None, json_schema: Optional[str] = None) -> Response:
         """
         Get Spotify catalog information for a single artist identified by their unique Spotify ID.
         
         :param artist_id: spotify artist id
         :param ignore_handle_response: boolean to ignore response handling (Default: False)
+        :param status_code: expected status code
+        :param json_schema: path with the expected json schema
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/get-an-artist
         """
-        return self.get(url=self._get_path(f"artists/{artist_id}"), ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.get, 
+                                    url=self._get_path(f"artists/{artist_id}"), 
+                                    ignore_handle_response=ignore_handle_response,
+                                    status_code=status_code,
+                                    json_schema=json_schema)
 
     @log_handler
     def get_artists(self, artist_ids: list[str], ignore_handle_response: bool = False) -> Response:
@@ -38,7 +44,7 @@ class ArtistsAPI(AppSession):
         :reference: https://developer.spotify.com/documentation/web-api/reference/get-multiple-artists
         """
         qparams = {"ids": ",".join(artist_ids)}
-        return self.get(url=self._get_path("artists"), params=qparams, ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.get, url=self._get_path("artists"), params=qparams, ignore_handle_response=ignore_handle_response)
     
     @log_handler
     def get_artist_albums(self, 
@@ -76,7 +82,7 @@ class ArtistsAPI(AppSession):
             qparams['limit'] = limit
         if offset:
             qparams['offset'] = offset
-        return self.get(url=self._get_path(f"artists/{artist_id}/albums"), params=qparams, ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.get, url=self._get_path(f"artists/{artist_id}/albums"), params=qparams, ignore_handle_response=ignore_handle_response)
 
     @log_handler
     def get_artist_top_tracks(self, artist_id: str, market: Optional[str] = None, ignore_handle_response: bool = False) -> Response:
@@ -92,7 +98,7 @@ class ArtistsAPI(AppSession):
         qparams = {}
         if market:
             qparams["market"] = market
-        return self.get(url=self._get_path(f"artists/{artist_id}/top-tracks"), params=qparams, ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.get, url=self._get_path(f"artists/{artist_id}/top-tracks"), params=qparams, ignore_handle_response=ignore_handle_response)
 
     @log_handler
     def get_artist_related_artists(self, artist_id: str, ignore_handle_response: bool = False):
@@ -105,7 +111,7 @@ class ArtistsAPI(AppSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/get-an-artists-related-artists
         """
-        return self.get(url=self._get_path(f"artists/{artist_id}/related-artists"), ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.get, url=self._get_path(f"artists/{artist_id}/related-artists"), ignore_handle_response=ignore_handle_response)
     
     def _get_path(self, path: str) -> str:
         """
