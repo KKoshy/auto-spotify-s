@@ -22,7 +22,7 @@ class UserSession(Session):
             "client_id": self.client_id,
             "client_secret": self.client_secret
         }
-        response = self.post(self.token_url, data=data)
+        response = self.cu_session.post(self.token_url, data=data)
         response.raise_for_status()
         self.token = response.json()["access_token"]
         self._set_headers()
