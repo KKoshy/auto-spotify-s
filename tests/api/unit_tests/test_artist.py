@@ -15,7 +15,7 @@ def artist(artists):
 @pytest.mark.positive
 class TestArtistAPI:
     def test_content_type_header(self, artist):
-        log.info("Verifying content type")
+        log.info("Verifying content type.")
         assert artist.headers.get('content-type') == ArtistAPIConstants.json_content
 
     def test_cache_control_header(self, artist):
