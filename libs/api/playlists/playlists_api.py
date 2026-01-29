@@ -4,6 +4,7 @@ Library for Playlists API
 
 import base64
 from requests import Response
+from typing import Optional
 from libs.api.core.user_session import UserSession
 from libs.api.log.log_handler import LogHandler
 
@@ -25,7 +26,7 @@ class PlaylistsAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/get-playlist
         """
-        return self.get(url=self._get_path(f"playlists/{playlist_id}"), ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.get, url=self._get_path(f"playlists/{playlist_id}"), ignore_handle_response=ignore_handle_response)
 
     @log_handler
     def update_playlist_details(self, playlist_id: str, json: dict, ignore_handle_response: bool = False) -> Response:
@@ -38,10 +39,10 @@ class PlaylistsAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/change-playlist-details
         """
-        return self.put(url=self._get_path(f"playlists/{playlist_id}"), json=json, ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.put, url=self._get_path(f"playlists/{playlist_id}"), json=json, ignore_handle_response=ignore_handle_response)
     
     @log_handler
-    def get_playlist_items(self, playlist_id: str, ignore_handle_response: bool = False) -> Response:
+    def get_playlist_items(self, playlist_id: str, ignore_handle_response: bool = False, status_code: Optional[int]=None, json_schema: Optional[str] = None) -> Response:
         """
         Get full details of the items of a playlist owned by a Spotify user.
         
@@ -50,7 +51,11 @@ class PlaylistsAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/get-playlists-tracks
         """
-        return self.get(url=self._get_path(f"playlists/{playlist_id}/tracks"), ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.get, 
+                                    url=self._get_path(f"playlists/{playlist_id}/tracks"), 
+                                    ignore_handle_response=ignore_handle_response,
+                                    status_code=status_code,
+                                    json_schema=json_schema)
 
     @log_handler
     def update_playlist_items(self, playlist_id: str, json: dict, ignore_handle_response: bool = False) -> Response:
@@ -63,10 +68,10 @@ class PlaylistsAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/reorder-or-replace-playlists-tracks
         """
-        return self.put(url=self._get_path(f"playlists/{playlist_id}/tracks"), json=json, ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.put, url=self._get_path(f"playlists/{playlist_id}/tracks"), json=json, ignore_handle_response=ignore_handle_response)
 
     @log_handler
-    def add_playlist_items(self, playlist_id: str, json: dict, ignore_handle_response: bool = False) -> Response:
+    def add_playlist_items(self, playlist_id: str, json: dict, ignore_handle_response: bool = False, status_code: Optional[int]=None, json_schema: Optional[str] = None) -> Response:
         """
         Add one or more items to a user's playlist.
         
@@ -76,10 +81,15 @@ class PlaylistsAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
         """
-        return self.post(url=self._get_path(f"playlists/{playlist_id}/tracks"), json=json, ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.post, 
+                                    url=self._get_path(f"playlists/{playlist_id}/tracks"), 
+                                    json=json, 
+                                    ignore_handle_response=ignore_handle_response,
+                                    status_code=status_code, 
+                                    json_schema=json_schema)
 
     @log_handler
-    def remove_playlist_items(self, playlist_id: str, json: dict, ignore_handle_response: bool = False) -> Response:
+    def remove_playlist_items(self, playlist_id: str, json: dict, ignore_handle_response: bool = False, status_code: Optional[int]=None, json_schema: Optional[str] = None) -> Response:
         """
         Remove one or more items from a user's playlist.
         
@@ -89,10 +99,16 @@ class PlaylistsAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/remove-tracks-playlist
         """
-        return self.delete(url=self._get_path(f"playlists/{playlist_id}/tracks"), json=json, ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.delete, 
+                                    url=self._get_path(f"playlists/{playlist_id}/tracks"), 
+                                    json=json, 
+                                    ignore_handle_response=ignore_handle_response,
+                                    status_code=status_code,
+                                    json_schema=json_schema)
 
     @log_handler
-    def get_current_user_playlists(self, ignore_handle_response: bool = False) -> Response:
+    def get_current_user_playlists(self, ignore_handle_response: bool = False, status_code: Optional[int]=None, json_schema: Optional[str] = None
+                                   ) -> Response:
         """
         Get a list of the playlists owned or followed by the current Spotify user.
         
@@ -100,7 +116,11 @@ class PlaylistsAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/get-a-list-of-current-users-playlists
         """
-        return self.get(url=self._get_path(f"me/playlists"), ignore_handle_response=ignore_handle_response)
+        # return self.cu_session.get(url=self._get_path(f"me/playlists"), ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.get, url=self._get_path("me/playlists"), 
+                                    ignore_handle_response=ignore_handle_response,
+                                    status_code=status_code,
+                                    json_schema=json_schema)
     
     @log_handler
     def get_user_playlists(self, user_id: str, ignore_handle_response: bool = False) -> Response:
@@ -112,7 +132,7 @@ class PlaylistsAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/get-list-users-playlists
         """
-        return self.get(url=self._get_path(f"users/{user_id}/playlists"), ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.get, url=self._get_path(f"users/{user_id}/playlists"), ignore_handle_response=ignore_handle_response)
 
     @log_handler
     def create_playlist(self, user_id: str, json: dict, ignore_handle_response: bool = False) -> Response:
@@ -125,7 +145,7 @@ class PlaylistsAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/create-playlist
         """
-        return self.post(url=self._get_path(f"users/{user_id}/playlists"), json=json, ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.post, url=self._get_path(f"users/{user_id}/playlists"), json=json, ignore_handle_response=ignore_handle_response)
 
     @log_handler
     def get_playlist_cover_image(self, playlist_id: str, ignore_handle_response: bool = False) -> Response:
@@ -137,7 +157,7 @@ class PlaylistsAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/get-playlist-cover
         """
-        return self.get(url=self._get_path(f"playlists/{playlist_id}/images"), ignore_handle_response=ignore_handle_response)
+        return self.process_request(request_method=self.cu_session.get, url=self._get_path(f"playlists/{playlist_id}/images"), ignore_handle_response=ignore_handle_response)
     
     @log_handler
     def add_custom_playlist_cover_image(self, playlist_id: str, image_path: str, ignore_handle_response: bool = False) -> Response:
@@ -153,7 +173,7 @@ class PlaylistsAPI(UserSession):
         self.cu_session.headers["Content-Type"] = 'image/jpeg'
         with open(image_path, "rb") as f:
             image_data = base64.b64encode(f.read()).decode()
-        return self.put(url=self._get_path(f"playlists/{playlist_id}/images"), data=image_data, ignore_handle_response=ignore_handle_response)    
+        return self.process_request(request_method=self.cu_session.put, url=self._get_path(f"playlists/{playlist_id}/images"), data=image_data, ignore_handle_response=ignore_handle_response)    
 
     def _get_path(self, path: str) -> str:
         """

@@ -19,7 +19,7 @@ class AppSession(Session):
                   "client_id": self.client_id,
                   "client_secret": self.client_secret}
         self._set_headers()
-        response = self.post(url=self.token_url, params=params)
+        response = self.cu_session.post(url=self.token_url, params=params)
         self.token = response.json().get("access_token")
         self._set_headers()
 
