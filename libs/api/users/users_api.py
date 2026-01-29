@@ -3,6 +3,7 @@ Library for Users API
 """
 
 from requests import Response
+from typing import Optional
 from libs.api.core.user_session import UserSession
 from libs.api.log.log_handler import LogHandler
 
@@ -15,7 +16,9 @@ class UsersAPI(UserSession):
         self.version = "v1"
 
     @log_handler
-    def follow_playlist(self, playlist_id: str, json: dict, ignore_handle_response: bool = False) -> Response:
+    def follow_playlist(self, playlist_id: str, json: dict, ignore_handle_response: bool = False, 
+                        status_code: Optional[int]=None
+                        ) -> Response:
         """
         Add the current user as a follower of a playlist.
         
@@ -25,10 +28,17 @@ class UsersAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/follow-playlist
         """
-        return self.put(url=self._get_path(f"playlists/{playlist_id}/followers"), json=json, ignore_handle_response=ignore_handle_response) 
+        return self.process_request(request_method=self.cu_session.put, 
+                                    url=self._get_path(f"playlists/{playlist_id}/followers"), 
+                                    json=json, 
+                                    ignore_handle_response=ignore_handle_response,
+                                    status_code=status_code
+                                    ) 
 
     @log_handler
-    def unfollow_playlist(self, playlist_id: str, ignore_handle_response: bool = False) -> Response:
+    def unfollow_playlist(self, playlist_id: str, ignore_handle_response: bool = False,
+                          status_code: Optional[int]=None,
+                          ) -> Response:
         """
         Remove the current user as a follower of a playlist.
         
@@ -38,7 +48,11 @@ class UsersAPI(UserSession):
         :return: response object
         :reference: https://developer.spotify.com/documentation/web-api/reference/unfollow-playlist
         """
-        return self.delete(url=self._get_path(f"playlists/{playlist_id}/followers"), ignore_handle_response=ignore_handle_response) 
+        return self.process_request(request_method=self.cu_session.delete, 
+                                    url=self._get_path(f"playlists/{playlist_id}/followers"), 
+                                    ignore_handle_response=ignore_handle_response,
+                                    status_code=status_code
+                                    ) 
     
     def _get_path(self, path: str) -> str:
         """
