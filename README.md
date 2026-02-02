@@ -1,2 +1,2 @@
 # auto-spotify-s
-Test Automation Framework for Spotify Website with Selenium
+Test Automation Framework for Spotify Website with Selenium.
