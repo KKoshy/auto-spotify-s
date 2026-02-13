@@ -2,13 +2,15 @@
 Pytest configuration
 """
 
-from selenium.webdriver import Chrome
-import pytest
-import os
-import allure
-from pathlib import Path
 import logging
+import os
+from pathlib import Path
+
+import allure
+import pytest
+from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
+
 from libs.api.artists.artists_api import ArtistsAPI
 from libs.api.playlists.playlists_api import PlaylistsAPI
 from libs.api.users.users_api import UsersAPI
@@ -16,9 +18,9 @@ from libs.api.users.users_api import UsersAPI
 log = logging.getLogger(__name__)
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope="module")
 def chrome_driver():
-    options = Options() 
+    options = Options()
     # options = webdriver.ChromeOptions()
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--disable-blink-features=AutomationControlled")
@@ -26,29 +28,39 @@ def chrome_driver():
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    options.add_experimental_option('useAutomationExtension', False)
+    options.add_experimental_option("useAutomationExtension", False)
     options.headless = False
     driver = Chrome(options=options)
     driver.get("https://open.spotify.com")
     yield driver
     driver.quit()
 
+
 @pytest.fixture(scope="module")
 def artists():
-    return ArtistsAPI(client_id=os.getenv('SPOTIFY_CLIENT_ID'), 
-                      client_secret=os.getenv('SPOTIFY_CLIENT_SECRET'))
+    return ArtistsAPI(
+        client_id=os.getenv("SPOTIFY_CLIENT_ID"),
+        client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
+    )
+
 
 @pytest.fixture(scope="module")
 def playlists():
-    return PlaylistsAPI(client_id=os.getenv('SPOTIFY_CLIENT_ID'), 
-                        client_secret=os.getenv('SPOTIFY_CLIENT_SECRET'), 
-                        refresh_token=os.getenv('SPOTIFY_REFRESH_TOKEN'))
+    return PlaylistsAPI(
+        client_id=os.getenv("SPOTIFY_CLIENT_ID"),
+        client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
+        refresh_token=os.getenv("SPOTIFY_REFRESH_TOKEN"),
+    )
+
 
 @pytest.fixture(scope="module")
 def users():
-    return UsersAPI(client_id=os.getenv('SPOTIFY_CLIENT_ID'), 
-                    client_secret=os.getenv('SPOTIFY_CLIENT_SECRET'), 
-                    refresh_token=os.getenv('SPOTIFY_REFRESH_TOKEN'))
+    return UsersAPI(
+        client_id=os.getenv("SPOTIFY_CLIENT_ID"),
+        client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
+        refresh_token=os.getenv("SPOTIFY_REFRESH_TOKEN"),
+    )
+
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_collection_modifyitems(items):
