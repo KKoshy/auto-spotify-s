@@ -3,8 +3,7 @@ POM for Login Page
 """
 
 import logging
-from libs.ui.base_page import BasePage
-from libs.ui.locators import LoginPageSelectors
+
 from selenium.webdriver.support import expected_conditions as EC
 from tenacity import (
     before_sleep_log,
@@ -14,7 +13,11 @@ from tenacity import (
     wait_fixed,
 )
 
+from libs.ui.base_page import BasePage
+from libs.ui.locators import LoginPageSelectors
+
 log = logging.getLogger(__name__)
+
 
 class LoginPage(BasePage):
     def __init__(self, driver):
@@ -48,7 +51,7 @@ class LoginPage(BasePage):
         self.click(LoginPageSelectors.CONTINUE_LOGIN_BUTTON)
         self.save_screenshot()
         return self
-    
+
     def should_have_username_error(self) -> "LoginPage":
         """
         Validating presence of username error
@@ -57,10 +60,17 @@ class LoginPage(BasePage):
         """
         log.info("Validating presence of username error")
         by, xpath = LoginPageSelectors.USER_ERROR
-        assert self.get_displayed_state((by, xpath.format(msg="Please enter your Spotify username or email address.")))
+        assert self.get_displayed_state(
+            (
+                by,
+                xpath.format(
+                    msg="Please enter your Spotify username or email address."
+                ),
+            )
+        )
         self.save_screenshot()
         return self
-    
+
     def should_have_no_account_error(self) -> "LoginPage":
         """
         Validating presence of no account error
@@ -69,10 +79,17 @@ class LoginPage(BasePage):
         """
         log.info("Validating presence of user with no account error")
         by, xpath = LoginPageSelectors.USER_ERROR
-        assert self.get_displayed_state((by, xpath.format(msg="Email or username isn't linked to a Spotify account")))
+        assert self.get_displayed_state(
+            (
+                by,
+                xpath.format(
+                    msg="Email or username isn't linked to a Spotify account"
+                ),
+            )
+        )
         self.save_screenshot()
         return self
-    
+
     def should_have_no_password_error(self) -> "LoginPage":
         """
         Validating presence of password error
@@ -83,7 +100,7 @@ class LoginPage(BasePage):
         assert self.get_displayed_state(LoginPageSelectors.NO_PASSWORD_ERROR)
         self.save_screenshot()
         return self
-        
+
     def should_have_incorrect_creds_error(self) -> "LoginPage":
         """
         Validating presence of incorrect username/password error
@@ -105,7 +122,7 @@ class LoginPage(BasePage):
     def _login_user(self, username: str):
         """
         Method for logging in with username
-        
+
         :param username: spotify user name
         :return: None
         """
