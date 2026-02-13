@@ -2,6 +2,7 @@
 This page holds API response constants
 """
 
+
 class ResponseConstants:
     status_200 = 200
     status_201 = 201
