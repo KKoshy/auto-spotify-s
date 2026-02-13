@@ -3,18 +3,25 @@ Unit test suite for Home Page UI
 """
 
 import logging
-import pytest
-from libs.ui.home_page import HomePage
-from libs.ui.locators import HomePageSelectors, NavigationBarSelectors, LeftSideBarSelectors
 
+import pytest
+
+from libs.ui.home_page import HomePage
+from libs.ui.locators import (
+    HomePageSelectors,
+    LeftSideBarSelectors,
+    NavigationBarSelectors,
+)
 
 log = logging.getLogger(__name__)
 
-@pytest.fixture(scope='module')
+
+@pytest.fixture(scope="module")
 def home(chrome_driver):
     home = HomePage(chrome_driver)
     yield home
     home.save_screenshot()
+
 
 class TestNavigationBar:
     def test_home_button(self, home):
@@ -25,7 +32,9 @@ class TestNavigationBar:
         log.info("Checking for search bar elements")
         assert home.get_enabled_state(NavigationBarSelectors.SEARCH_BUTTON)
         assert home.get_displayed_state(NavigationBarSelectors.SEARCH_INPUT)
-        assert home.get_enabled_state(NavigationBarSelectors.SEARCH_CLEAR_BUTTON)
+        assert home.get_enabled_state(
+            NavigationBarSelectors.SEARCH_CLEAR_BUTTON
+        )
         assert home.get_enabled_state(NavigationBarSelectors.BROWSE_BUTTON)
 
     def test_premium_button(self, home):
@@ -52,16 +61,22 @@ class TestNavigationBar:
         log.info("Checking for Login button")
         assert home.get_enabled_state(NavigationBarSelectors.LOGIN_BUTTON)
 
+
 class TestLeftSideBar:
     def test_library_header(self, home):
         log.info("Checking for Your library header")
-        assert home.get_displayed_state(LeftSideBarSelectors.YOUR_LIBRARY_HEADER)
+        assert home.get_displayed_state(
+            LeftSideBarSelectors.YOUR_LIBRARY_HEADER
+        )
 
     def test_create_playlist(self, home):
         log.info("Checking for Create Playlist button")
         assert home.get_enabled_state(LeftSideBarSelectors.CREATE_PL_FL)
         home.click(LeftSideBarSelectors.CREATE_PL_FL)
-        assert home.get_enabled_state(LeftSideBarSelectors.CREATE_PLAYLIST_OPTION)
+        assert home.get_enabled_state(
+            LeftSideBarSelectors.CREATE_PLAYLIST_OPTION
+        )
+
 
 class TestLegalLinks:
     def test_legal_link(self, home):
