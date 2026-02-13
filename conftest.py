@@ -1,3 +1,7 @@
+"""
+Pytest configuration
+"""
+
 from selenium.webdriver import Chrome
 import pytest
 import os

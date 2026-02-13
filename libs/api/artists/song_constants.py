@@ -1,3 +1,7 @@
+"""
+This file holds constants for Artists API
+"""
+
 import os
 
 class ArtistAPIConstants:

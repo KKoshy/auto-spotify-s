@@ -1,3 +1,7 @@
+"""
+POM for Left side bar
+"""
+
 import logging
 import re
 from libs.ui.base_page import BasePage

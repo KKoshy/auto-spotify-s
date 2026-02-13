@@ -1,3 +1,7 @@
+"""
+Functional test suite for Playlists UI
+"""
+
 import os
 import logging
 import pytest

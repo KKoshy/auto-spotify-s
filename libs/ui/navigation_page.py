@@ -1,3 +1,7 @@
+"""
+POM for Navigation bar
+"""
+
 import logging
 from libs.ui.base_page import BasePage
 from libs.ui.locators import NavigationBarSelectors

@@ -1,3 +1,7 @@
+"""
+Unit test suite for Artist API
+"""
+
 import logging
 import pytest
 from data.api.response_constants import ResponseConstants

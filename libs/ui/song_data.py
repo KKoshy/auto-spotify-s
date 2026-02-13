@@ -1,3 +1,7 @@
+"""
+This page holds data classes
+"""
+
 import string
 import secrets
 from dataclasses import dataclass, field
