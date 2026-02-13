@@ -1,3 +1,7 @@
+"""
+Unit test suite for Home Page UI
+"""
+
 import logging
 import pytest
 from libs.ui.home_page import HomePage
