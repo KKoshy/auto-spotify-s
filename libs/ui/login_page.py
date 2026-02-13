@@ -1,3 +1,7 @@
+"""
+POM for Login Page
+"""
+
 import logging
 from libs.ui.base_page import BasePage
 from libs.ui.locators import LoginPageSelectors
@@ -99,6 +103,12 @@ class LoginPage(BasePage):
         reraise=True,
     )
     def _login_user(self, username: str):
+        """
+        Method for logging in with username
+        
+        :param username: spotify user name
+        :return: None
+        """
         self.type(LoginPageSelectors.USERNAME, username)
         self.click(LoginPageSelectors.CONTINUE_LOGIN_BUTTON)
         if self.get_displayed_state(LoginPageSelectors.LOGIN_ALERT):
