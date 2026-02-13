@@ -1,3 +1,7 @@
+"""
+This file holds all the UI selectors
+"""
+
 from selenium.webdriver.common.by import By
 
 class LoginPageSelectors:
@@ -66,4 +70,3 @@ class PlaylistDetailsPageSelectors:
     DELETE_DIALOG = (By.XPATH, "//div[@aria-label='Delete {playlist}?']")
     DELETE_DIALOG_MESSAGE = (By.XPATH, "//p[@data-testid='confirm-dialog-description'][contains(.,'This will delete {playlist} from Your Library.')]")
     DELETE_BUTTON = (By.XPATH, "//button[contains(.,'Delete')]")
-    
