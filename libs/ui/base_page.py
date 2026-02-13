@@ -4,12 +4,14 @@ Base Page for UI POM
 
 import os
 import time
-import allure
 from uuid import uuid4
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
+
+import allure
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
 
 class BasePage:
     def __init__(self, driver):
@@ -17,7 +19,12 @@ class BasePage:
         self.base_url = "https://open.spotify.com"
         self.wait = WebDriverWait(driver, 35)
 
-    def find(self, locator: tuple, condition: object = EC.presence_of_element_located, timeout_ignore: bool=False):
+    def find(
+        self,
+        locator: tuple,
+        condition: object = EC.presence_of_element_located,
+        timeout_ignore: bool = False,
+    ):
         try:
             return self.wait.until(condition(locator))
         except TimeoutException as e:
@@ -40,7 +47,7 @@ class BasePage:
             time.sleep(0.08)
 
     def get_enabled_state(self, locator: tuple):
-        try: 
+        try:
             return self.find(locator).is_enabled()
         except TimeoutException:
             return False
@@ -50,7 +57,7 @@ class BasePage:
             return self.find(locator).is_displayed()
         except TimeoutException:
             return False
-    
+
     def save_screenshot(self):
         img_path = os.path.join("allure-results", "{}.png".format(uuid4()))
         self.driver.save_screenshot(img_path)
