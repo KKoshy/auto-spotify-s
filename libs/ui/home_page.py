@@ -1,3 +1,6 @@
+"""
+POM for Home Page
+"""
 
 from libs.ui.base_page import BasePage
 from libs.ui.navigation_page import NavigationBar
