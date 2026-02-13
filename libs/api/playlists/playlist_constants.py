@@ -4,11 +4,10 @@ This file holds constants for Playlists API
 
 import os
 
+
 class PlaylistAPIConstants:
     nightly_playlist_id = "1Ju3Rs186TgQuou1JCZbjz"
-    follow_playlist_payload = {
-        "public": True
-    }
+    follow_playlist_payload = {"public": True}
     add_items_payload = {
         "uris": [
             # believer
@@ -18,7 +17,7 @@ class PlaylistAPIConstants:
             # die with a smile
             "spotify:track:2plbrEY59IikOBgBGLjaoe",
         ],
-        "position": 0
+        "position": 0,
     }
     remove_items_payload = {
         "tracks": [
@@ -30,10 +29,19 @@ class PlaylistAPIConstants:
             },
             {
                 "uri": "spotify:track:2plbrEY59IikOBgBGLjaoe",
-            }
+            },
         ],
-        "snapshot_id": "string"
+        "snapshot_id": "string",
     }
-    current_user_playlist_schema = os.path.join("data", "json_schema", "playlists", "current_user_playlist_schema.json")
-    add_delete_playlist_items_schema = os.path.join("data", "json_schema", "playlists", "add_delete_playlist_items_schema.json")
-    playlist_items_schema = os.path.join("data", "json_schema", "playlists", "playlist_items_schema.json")
+    current_user_playlist_schema = os.path.join(
+        "data", "json_schema", "playlists", "current_user_playlist_schema.json"
+    )
+    add_delete_playlist_items_schema = os.path.join(
+        "data",
+        "json_schema",
+        "playlists",
+        "add_delete_playlist_items_schema.json",
+    )
+    playlist_items_schema = os.path.join(
+        "data", "json_schema", "playlists", "playlist_items_schema.json"
+    )

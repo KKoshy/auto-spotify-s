@@ -3,8 +3,9 @@ Logger for API calls
 """
 
 import logging
-from requests import Response
 from json import JSONDecodeError
+
+from requests import Response
 
 log = logging.getLogger(__name__)
 
@@ -27,4 +28,5 @@ class LogHandler:
                 log.info(f"Skipping response JSON")
             log.info(f"{'*'*80}")
             return response
+
         return log_wrapper

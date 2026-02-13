@@ -4,15 +4,32 @@ This file holds all the UI selectors
 
 from selenium.webdriver.common.by import By
 
+
 class LoginPageSelectors:
     USERNAME = (By.XPATH, "//input[@data-testid='login-username']")
     CONTINUE_LOGIN_BUTTON = (By.XPATH, "//button[@data-testid='login-button']")
-    LOGIN_WITH_PASSWORD = (By.XPATH, "//button[contains(., 'Log in with a password')]")
+    LOGIN_WITH_PASSWORD = (
+        By.XPATH,
+        "//button[contains(., 'Log in with a password')]",
+    )
     PASSWORD = (By.XPATH, "//input[@data-testid='login-password']")
-    LOGIN_ALERT = (By.XPATH, "//div[@data-encore-id='banner'][contains(., 'Oops! Something went wrong, please try again or check out our help area')]")
-    USER_ERROR = (By.XPATH, '//div[@data-testid="username-error"]/descendant::span[normalize-space()="{msg}"]')
-    NO_PASSWORD_ERROR = (By.XPATH, "//div[@data-testid='password-error']/span[normalize-space()='Please enter your password.']")
-    INCORRECT_CREDS = (By.XPATH, "//div[@role='alert']/span[normalize-space()='Incorrect username or password.']")
+    LOGIN_ALERT = (
+        By.XPATH,
+        "//div[@data-encore-id='banner'][contains(., 'Oops! Something went wrong, please try again or check out our help area')]",
+    )
+    USER_ERROR = (
+        By.XPATH,
+        '//div[@data-testid="username-error"]/descendant::span[normalize-space()="{msg}"]',
+    )
+    NO_PASSWORD_ERROR = (
+        By.XPATH,
+        "//div[@data-testid='password-error']/span[normalize-space()='Please enter your password.']",
+    )
+    INCORRECT_CREDS = (
+        By.XPATH,
+        "//div[@role='alert']/span[normalize-space()='Incorrect username or password.']",
+    )
+
 
 class NavigationBarSelectors:
     HOME_BUTTON = (By.XPATH, "//button[@data-testid='home-button']")
@@ -27,46 +44,121 @@ class NavigationBarSelectors:
     SIGN_UP_BUTTON = (By.XPATH, "//button[@data-testid='signup-button']")
     LOGIN_BUTTON = (By.XPATH, "//button[@data-testid='login-button']")
     USER_WIDGET_BUTTON = (By.XPATH, "//button[@data-testid='user-widget-link']")
-    USER_PROFILE_BUTTON = (By.XPATH, "//button[@data-testid='user-widget-link']/span[contains(text(),'{user_name}')]")
-    EXPLORE_PREMIUM_BUTTON = (By.XPATH, "//button[normalize-space()='Explore Premium']")
-    WHATS_NEW_BUTTON = (By.XPATH, "//button[@data-testid='whats-new-feed-button']")
-    FRIEND_ACTIVITY_BUTTON = (By.XPATH, "//button[@data-testid='friend-activity-button']")
-    LOGOUT_BUTTON = (By.XPATH, "//button[@data-testid='user-widget-dropdown-logout']")
+    USER_PROFILE_BUTTON = (
+        By.XPATH,
+        "//button[@data-testid='user-widget-link']/span[contains(text(),'{user_name}')]",
+    )
+    EXPLORE_PREMIUM_BUTTON = (
+        By.XPATH,
+        "//button[normalize-space()='Explore Premium']",
+    )
+    WHATS_NEW_BUTTON = (
+        By.XPATH,
+        "//button[@data-testid='whats-new-feed-button']",
+    )
+    FRIEND_ACTIVITY_BUTTON = (
+        By.XPATH,
+        "//button[@data-testid='friend-activity-button']",
+    )
+    LOGOUT_BUTTON = (
+        By.XPATH,
+        "//button[@data-testid='user-widget-dropdown-logout']",
+    )
+
 
 class HomePageSelectors:
     LEGAL_LINK = (By.XPATH, "//a[contains(., 'Legal')]")
-    SAFETY_AND_PRIVACY_LINK = (By.XPATH, "//a[contains(., 'Safety & Privacy Center')]")
+    SAFETY_AND_PRIVACY_LINK = (
+        By.XPATH,
+        "//a[contains(., 'Safety & Privacy Center')]",
+    )
     PRIVACY_POLICY_LINK = (By.XPATH, "//a[contains(., 'Privacy Policy')]")
-    COOKIES_LINK = (By.XPATH, "//a[contains(., 'Cookies')][@data-encore-id='textLink']")
+    COOKIES_LINK = (
+        By.XPATH,
+        "//a[contains(., 'Cookies')][@data-encore-id='textLink']",
+    )
     ABOUT_ADS_LINK = (By.XPATH, "//a[contains(., 'About Ads')]")
     ACCESSIBILITY_LINK = (By.XPATH, "//a[contains(., 'Accessibility')]")
 
+
 class LeftSideBarSelectors:
-    YOUR_LIBRARY_HEADER = (By.XPATH, "//div/h1[normalize-space()='Your Library']")
-    CREATE_PL_FL = (By.XPATH, "//button[@aria-label='Create playlist or folder'] | //button[@aria-label='Create']")
-    CREATE_PLAYLIST_OPTION = (By.XPATH, "//button[contains(., 'Create a new playlist')] | //button[contains(.,'Create a playlist')]")
+    YOUR_LIBRARY_HEADER = (
+        By.XPATH,
+        "//div/h1[normalize-space()='Your Library']",
+    )
+    CREATE_PL_FL = (
+        By.XPATH,
+        "//button[@aria-label='Create playlist or folder'] | //button[@aria-label='Create']",
+    )
+    CREATE_PLAYLIST_OPTION = (
+        By.XPATH,
+        "//button[contains(., 'Create a new playlist')] | //button[contains(.,'Create a playlist')]",
+    )
     OPEN_LIBRARY = (By.XPATH, "//button[@aria-label='Open Your Library']")
-    COLLAPSE_LIBRARY = (By.XPATH, "//button[@aria-label='Collapse Your Library']")
+    COLLAPSE_LIBRARY = (
+        By.XPATH,
+        "//button[@aria-label='Collapse Your Library']",
+    )
     SEARCH_BUTTON = (By.XPATH, "//button[@data-testid='expand-button']")
-    SEARCH_BAR = (By.XPATH, "//div/input[@placeholder='Search in Your Library']")
-    PLAYLIST_TEMPLATE = (By.XPATH, "//div[@data-encore-id='listRow'][descendant::p[contains(.,'{playlist}')]][descendant::button[@data-testid='play-button']]")
+    SEARCH_BAR = (
+        By.XPATH,
+        "//div/input[@placeholder='Search in Your Library']",
+    )
+    PLAYLIST_TEMPLATE = (
+        By.XPATH,
+        "//div[@data-encore-id='listRow'][descendant::p[contains(.,'{playlist}')]][descendant::button[@data-testid='play-button']]",
+    )
+
 
 class PlaylistDetailsPageSelectors:
     PLAYLIST_MORE_BUTTON = (By.XPATH, "//button[@data-testid='more-button']")
     EDIT_DETAILS = (By.XPATH, "//button[contains(., 'Edit details')]")
-    PL_DETAILS_MODAL = (By.XPATH, "//div[@data-testid='playlist-edit-details-modal']")
-    PL_NAME_INPUT = (By.XPATH, "//input[@data-testid='playlist-edit-details-name-input']")
-    PL_DESC_INPUT = (By.XPATH, "//textarea[@data-testid='playlist-edit-details-description-input']")
-    SAVE_BUTTON = (By.XPATH, "//button[@data-testid='playlist-edit-details-save-button']")
+    PL_DETAILS_MODAL = (
+        By.XPATH,
+        "//div[@data-testid='playlist-edit-details-modal']",
+    )
+    PL_NAME_INPUT = (
+        By.XPATH,
+        "//input[@data-testid='playlist-edit-details-name-input']",
+    )
+    PL_DESC_INPUT = (
+        By.XPATH,
+        "//textarea[@data-testid='playlist-edit-details-description-input']",
+    )
+    SAVE_BUTTON = (
+        By.XPATH,
+        "//button[@data-testid='playlist-edit-details-save-button']",
+    )
     PL_TITLE = (By.XPATH, "//span[@data-testid='entityTitle']")
     PL_DESCRIPTION = (By.XPATH, "//span/div[text()='{description}']")
-    SEARCH_BAR = (By.XPATH, "//input[@placeholder='Search for songs or episodes']")
-    SEARCH_TRACKLIST_ROW_TEMPLATE = (By.XPATH, "//div[@data-testid='tracklist-row'][descendant::button[@aria-label='Play {track} by {artist}']][descendant::a[text()='{album}']]")
-    ADD_BUTTON_TEMPLATE = (By.XPATH, "//div[@data-testid='tracklist-row'][descendant::button[@aria-label='Play {track} by {artist}']][descendant::a[text()='{album}']]/div/button[@data-testid='add-to-playlist-button']")
-    PLAYLIST_TRACK_ROW_TEMPLATE = (By.XPATH, "//div[@data-testid='tracklist-row'][descendant::button[@aria-label='Play {track} by {artist}']][descendant::a[text()='{album}']][descendant::button[@data-testid='more-button']]")
-    TRACK_MORE_BUTTON = (By.XPATH, "//div[@data-testid='tracklist-row'][descendant::button[@aria-label='Play {track} by {artist}']][descendant::a[text()='{album}']]/div/button[@data-testid='more-button']")
-    REMOVE_TRACK = (By.XPATH, "//button[contains(.,'Remove from this playlist')]")
+    SEARCH_BAR = (
+        By.XPATH,
+        "//input[@placeholder='Search for songs or episodes']",
+    )
+    SEARCH_TRACKLIST_ROW_TEMPLATE = (
+        By.XPATH,
+        "//div[@data-testid='tracklist-row'][descendant::button[@aria-label='Play {track} by {artist}']][descendant::a[text()='{album}']]",
+    )
+    ADD_BUTTON_TEMPLATE = (
+        By.XPATH,
+        "//div[@data-testid='tracklist-row'][descendant::button[@aria-label='Play {track} by {artist}']][descendant::a[text()='{album}']]/div/button[@data-testid='add-to-playlist-button']",
+    )
+    PLAYLIST_TRACK_ROW_TEMPLATE = (
+        By.XPATH,
+        "//div[@data-testid='tracklist-row'][descendant::button[@aria-label='Play {track} by {artist}']][descendant::a[text()='{album}']][descendant::button[@data-testid='more-button']]",
+    )
+    TRACK_MORE_BUTTON = (
+        By.XPATH,
+        "//div[@data-testid='tracklist-row'][descendant::button[@aria-label='Play {track} by {artist}']][descendant::a[text()='{album}']]/div/button[@data-testid='more-button']",
+    )
+    REMOVE_TRACK = (
+        By.XPATH,
+        "//button[contains(.,'Remove from this playlist')]",
+    )
     DELETE_PLAYLIST = (By.XPATH, "//button[contains(.,'Delete')]")
     DELETE_DIALOG = (By.XPATH, "//div[@aria-label='Delete {playlist}?']")
-    DELETE_DIALOG_MESSAGE = (By.XPATH, "//p[@data-testid='confirm-dialog-description'][contains(.,'This will delete {playlist} from Your Library.')]")
+    DELETE_DIALOG_MESSAGE = (
+        By.XPATH,
+        "//p[@data-testid='confirm-dialog-description'][contains(.,'This will delete {playlist} from Your Library.')]",
+    )
     DELETE_BUTTON = (By.XPATH, "//button[contains(.,'Delete')]")
