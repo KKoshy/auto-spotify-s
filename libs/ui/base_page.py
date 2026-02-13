@@ -1,3 +1,7 @@
+"""
+Base Page for UI POM
+"""
+
 import os
 import time
 import allure
