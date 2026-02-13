@@ -1,3 +1,7 @@
+"""
+POM for Playlist details page
+"""
+
 import logging
 from libs.ui.locators import PlaylistDetailsPageSelectors
 from libs.ui.base_page import BasePage
