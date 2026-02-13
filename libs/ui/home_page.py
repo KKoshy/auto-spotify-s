@@ -2,10 +2,12 @@
 POM for Home Page
 """
 
-from libs.ui.base_page import BasePage
-from libs.ui.navigation_page import NavigationBar
-from libs.ui.left_sidebar_page import LeftSideBarPage
 from selenium.webdriver.support import expected_conditions as EC
+
+from libs.ui.base_page import BasePage
+from libs.ui.left_sidebar_page import LeftSideBarPage
+from libs.ui.navigation_page import NavigationBar
+
 
 class HomePage(BasePage):
     def __init__(self, driver):
