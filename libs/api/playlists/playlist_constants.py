@@ -1,3 +1,7 @@
+"""
+This file holds constants for Playlists API
+"""
+
 import os
 
 class PlaylistAPIConstants:
