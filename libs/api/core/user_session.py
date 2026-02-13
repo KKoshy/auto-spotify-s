@@ -4,6 +4,7 @@ Library for UserSession of Spotify
 
 from libs.api.core.base_session import Session
 
+
 class UserSession(Session):
     def __init__(self, client_id: str, client_secret: str, refresh_token: str):
         super().__init__()
@@ -20,7 +21,7 @@ class UserSession(Session):
             "grant_type": "refresh_token",
             "refresh_token": self.refresh_token,
             "client_id": self.client_id,
-            "client_secret": self.client_secret
+            "client_secret": self.client_secret,
         }
         response = self.cu_session.post(self.token_url, data=data)
         response.raise_for_status()
@@ -28,6 +29,8 @@ class UserSession(Session):
         self._set_headers()
 
     def _set_headers(self):
-        self.cu_session.headers["Content-Type"] = "application/x-www-form-urlencoded"
+        self.cu_session.headers["Content-Type"] = (
+            "application/x-www-form-urlencoded"
+        )
         if self.token:
             self.cu_session.headers["Authorization"] = f"Bearer {self.token}"
