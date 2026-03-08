@@ -1,1 +1,0 @@
-2026-03-07 08:22:33 [    INFO] Checking for Support button
