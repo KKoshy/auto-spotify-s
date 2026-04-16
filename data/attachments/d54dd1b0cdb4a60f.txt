@@ -1,2 +1,0 @@
-2026-04-15 09:15:32 [    INFO] Validating login with no username
-2026-04-15 09:15:32 [    INFO] Validating presence of username error
