@@ -1,3 +1,0 @@
-2026-05-02 09:00:41 [    INFO] Validating login
-2026-05-02 09:00:44 [    INFO] Logging in as asdofnsdoin@gmail.com
-2026-05-02 09:00:47 [    INFO] Retrying libs.ui.login_page.LoginPage._login_user in 30.0 seconds as it raised SystemError: Unexpected error.
