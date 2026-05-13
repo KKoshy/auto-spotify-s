@@ -1,0 +1,3 @@
+2026-05-13 10:15:32 [    INFO] Logging in as asdofnsdoin@gmail.com
+2026-05-13 10:16:12 [    INFO] Validating playlist creation with driver <selenium.webdriver.chrome.webdriver.WebDriver (session="bea1ca2e7156b67c6841560c0762a286")>
+2026-05-13 10:16:12 [    INFO] Creating playlist
