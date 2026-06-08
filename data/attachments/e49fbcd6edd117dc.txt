@@ -1,4 +1,0 @@
-2026-06-07 10:24:05 [    INFO] Logging in as asdofnsdoin@gmail.com
-2026-06-07 10:24:08 [    INFO] Retrying libs.ui.login_page.LoginPage._login_user in 30.0 seconds as it raised SystemError: Unexpected error.
-2026-06-07 10:25:18 [    INFO] Validating playlist creation with driver <selenium.webdriver.chrome.webdriver.WebDriver (session="89b4c026e509a58b43ae74c769fc9947")>
-2026-06-07 10:25:18 [    INFO] Creating playlist
