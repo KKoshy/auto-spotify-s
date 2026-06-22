@@ -1,0 +1,2 @@
+2026-06-22 13:33:10 [    INFO] Validating login with no username
+2026-06-22 13:33:10 [    INFO] Validating presence of username error
