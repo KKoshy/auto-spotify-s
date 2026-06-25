@@ -1,0 +1,1 @@
+2026-06-25 10:35:59 [    INFO] skip test_add_playlist_items because it depends on follow
