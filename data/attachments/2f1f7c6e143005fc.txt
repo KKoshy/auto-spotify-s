@@ -1,0 +1,1 @@
+2026-06-26 10:45:27 [    INFO] Checking for Login button
