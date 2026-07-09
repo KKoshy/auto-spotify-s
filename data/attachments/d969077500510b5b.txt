@@ -1,1 +1,0 @@
-2026-07-08 10:10:11 [    INFO] Checking for Install App button
