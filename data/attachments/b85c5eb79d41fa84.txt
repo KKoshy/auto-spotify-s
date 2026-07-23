@@ -1,0 +1,9 @@
+2026-07-23 10:13:19 [    INFO] Verifying negative case of Artist API
+2026-07-23 10:13:20 [    INFO] ********************************************************************************
+2026-07-23 10:13:20 [    INFO] Request URL: https://api.spotify.com/v1/artists/None
+2026-07-23 10:13:20 [    INFO] Request Method: GET
+2026-07-23 10:13:20 [    INFO] Status Code: 403
+2026-07-23 10:13:20 [    INFO] Request Body: None
+2026-07-23 10:13:20 [    INFO] Response Headers: {'cache-control': 'private, max-age=0', 'content-encoding': 'gzip', 'server-timing': 'edge;dur=1028', 'strict-transport-security': 'max-age=31536000', 'x-content-type-options': 'nosniff', 'alt-svc': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000, h3=":443"; ma=2592000', 'date': 'Thu, 23 Jul 2026 10:13:20 GMT', 'server': 'envoy', 'via': 'HTTP/2 edgeproxy, 1.1 google', 'Transfer-Encoding': 'chunked'}
+2026-07-23 10:13:20 [    INFO] Skipping response JSON
+2026-07-23 10:13:20 [    INFO] ********************************************************************************
