@@ -1,0 +1,1 @@
+2026-08-02 09:50:07 [    INFO] Checking for Sign up button
