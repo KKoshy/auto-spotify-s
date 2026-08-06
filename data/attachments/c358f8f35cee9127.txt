@@ -1,1 +1,0 @@
-2026-08-05 10:28:04 [    INFO] Checking for Sign up button
