@@ -1,9 +1,0 @@
-2026-08-16 08:19:35 [    INFO] Verifying negative case of Artist API
-2026-08-16 08:19:35 [    INFO] ********************************************************************************
-2026-08-16 08:19:35 [    INFO] Request URL: https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg
-2026-08-16 08:19:35 [    INFO] Request Method: GET
-2026-08-16 08:19:35 [    INFO] Status Code: 401
-2026-08-16 08:19:35 [    INFO] Request Body: None
-2026-08-16 08:19:35 [    INFO] Response Headers: {'server-timing': 'edge;dur=', 'strict-transport-security': 'max-age=31536000', 'x-content-type-options': 'nosniff', 'alt-svc': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000, h3=":443"; ma=2592000', 'www-authenticate': 'Bearer realm="spotify", error="invalid_token", error_description="Invalid access token"', 'access-control-allow-origin': '*', 'access-control-allow-methods': 'GET, POST, OPTIONS, PUT, DELETE, PATCH', 'access-control-allow-headers': 'Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version, X-Cloud-Trace-Context, client-token, content-access-token', 'access-control-allow-credentials': 'true', 'access-control-max-age': '604800', 'Content-Length': '94', 'content-type': 'application/json', 'vary': 'Accept-Encoding', 'date': 'Sun, 16 Aug 2026 08:19:35 GMT', 'server': 'envoy', 'via': 'HTTP/2 edgeproxy, 1.1 google'}
-2026-08-16 08:19:35 [    INFO] Response JSON: {'error': {'status': 401, 'message': 'Missing/invalid/expired access token'}}
-2026-08-16 08:19:35 [    INFO] ********************************************************************************
