@@ -1,1 +1,0 @@
-2026-08-17 08:34:13 [    INFO] Checking for Privacy policy link
