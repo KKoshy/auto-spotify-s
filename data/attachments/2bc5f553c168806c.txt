@@ -1,1 +1,0 @@
-2026-08-21 08:38:14 [    INFO] skip test_user_nav_bar because it depends on login
