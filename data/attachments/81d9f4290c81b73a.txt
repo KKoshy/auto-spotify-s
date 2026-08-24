@@ -1,3 +1,0 @@
-2026-08-23 08:21:32 [    INFO] Logging in as asdofnsdoin@gmail.com
-2026-08-23 08:21:35 [    INFO] Retrying libs.ui.login_page.LoginPage._login_user in 30.0 seconds as it raised SystemError: Unexpected error.
-2026-08-23 08:22:08 [    INFO] Retrying libs.ui.login_page.LoginPage._login_user in 30.0 seconds as it raised SystemError: Unexpected error.
