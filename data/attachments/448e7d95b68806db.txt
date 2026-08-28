@@ -1,1 +1,0 @@
-2026-08-27 18:42:28 [    INFO] Checking for About Ads link
