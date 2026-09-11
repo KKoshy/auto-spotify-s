@@ -1,1 +1,0 @@
-2026-09-10 12:35:04 [    INFO] Checking for Safety and Privacy Center link
