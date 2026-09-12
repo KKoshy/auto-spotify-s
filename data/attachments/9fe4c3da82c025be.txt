@@ -1,1 +1,0 @@
-2026-09-11 12:29:07 [    INFO] Checking for Premium button
