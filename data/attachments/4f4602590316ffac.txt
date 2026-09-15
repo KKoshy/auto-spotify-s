@@ -1,1 +1,0 @@
-2026-09-14 14:36:56 [    INFO] Checking for Home button state.
