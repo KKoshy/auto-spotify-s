@@ -1,6 +1,16 @@
+<div align="center">
+
 # 🎵 auto-spotify-s
 
 A **Test Automation Framework** for the Spotify website, built with **Python**, **Selenium**, and **pytest**.
+
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat-square&logo=python&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-WebDriver-43B02A?style=flat-square&logo=selenium&logoColor=white)
+![Pytest](https://img.shields.io/badge/pytest-tested-0A9EDC?style=flat-square&logo=pytest&logoColor=white)
+![Status](https://img.shields.io/badge/status-completed-blue?style=flat-square)
+![Made with](https://img.shields.io/badge/made%20with-%E2%98%95%20and%20locators-blueviolet?style=flat-square)
+
+</div>
 
 ---
 
