@@ -1,1 +1,0 @@
-2026-10-01 14:58:17 [    INFO] skip test_unfollow_playlist because it depends on follow
