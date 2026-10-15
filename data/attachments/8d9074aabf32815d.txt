@@ -1,1 +1,0 @@
-2026-10-14 13:17:41 [    INFO] Validating login with no username

@@ -1,1 +1,0 @@
-2026-10-14 13:17:41 [    INFO] skip test_logout because it depends on login
