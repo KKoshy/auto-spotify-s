@@ -1,2 +1,0 @@
-2026-10-28 14:46:28 [    INFO] Validating login
-2026-10-28 14:46:31 [    INFO] Logging in as asdofnsdoin@gmail.com
