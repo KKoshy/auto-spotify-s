@@ -1,0 +1,1 @@
+2026-11-15 15:10:07 [    INFO] Checking for Accessibility link
