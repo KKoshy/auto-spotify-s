@@ -1,0 +1,1 @@
+2026-11-18 16:51:25 [    INFO] Checking for Safety and Privacy Center link
